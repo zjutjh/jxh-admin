@@ -24,7 +24,7 @@ Vue.use(VueAuth, {
         token = token.split('Bearer ')
         return token[token.length > 1 ? 1 : 0]
       } else {
-        return res.data.data.token
+        return (res.data.data || {}).token
       }
     }
   },

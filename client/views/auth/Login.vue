@@ -67,17 +67,12 @@ export default {
         rememberMe: this.data.rememberMe,
         redirect: {name: redirect ? redirect.from.name : 'Home'},
         success (res) {
-          console.log('Auth Success')
-          // console.log('Token: ' + this.$auth.token())
-          // console.log(res)
+          if (res.data.code < 0) {
+            this.error = res.data.msg
+          }
         },
         error (err) {
           if (err.response) {
-            // The request was made, but the server responded with a status code
-            // that falls out of the range of 2xx
-            // console.log(err.response.status)
-            // console.log(err.response.data)
-            // console.log(err.response.headers)
             this.error = err.response.data
           } else {
             // Something happened in setting up the request that triggered an Error
